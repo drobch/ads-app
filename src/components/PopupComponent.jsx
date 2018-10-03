@@ -7,26 +7,25 @@ import {
   FormControl,
   ButtonToolbar,
   Button,
-  Modal
+  Modal,
 } from 'react-bootstrap';
 
-class Popup extends Component {
+class PopupComponent extends Component {
   constructor(props) {
     super(props);
     
     this.handleChange = this.handleChange.bind(this);
-  
+    
     this.handleHide = this.handleHide.bind(this);
-
     
     this.state = {
       value: '',
-      show: false
+      show: false,
     };
   };
   
   handleHide() {
-    this.setState({ show: false });
+    this.setState({show: false});
   }
   
   getValidationState() {
@@ -43,10 +42,9 @@ class Popup extends Component {
   
   render() {
     return (
-        <div className="modal__inner">
-          <ButtonToolbar className="modal__new">
-            <Button bsStyle="primary"  onClick={() => this.setState({ show: true })}>New Ad</Button>
-          </ButtonToolbar>
+        <div >
+          <button className="modal__new"
+                  onClick={() => this.setState({show: true})}></button>
           <Modal
               show={this.state.show}
               onHide={this.handleClose}
@@ -95,4 +93,4 @@ class Popup extends Component {
   
 }
 
-export default Popup;
+export default PopupComponent;
