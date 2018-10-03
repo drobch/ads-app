@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import '../index.css';
-import Nav from './Nav';
-import Popup from './Popup';
-import Ad from './Ad';
+import NavComponent from './NavComponent';
+import PopupComponent from './PopupComponent';
+import AdsComponent from './AdsComponent';
 
 class DashboardComponent extends Component {
   constructor(props) {
@@ -13,12 +13,10 @@ class DashboardComponent extends Component {
   render() {
     return (
         <div className="content">
-          <Nav />
-          <div className="modal__inner">
-            <Ad />
-            <Ad />
-            <Ad />
-            <Popup />
+          <NavComponent />
+          <div className="ads__wrapper">
+            <AdsComponent />
+            <PopupComponent />
           </div>
         </div>
     );

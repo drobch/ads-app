@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import Dashboard from './components/Dashboard'
+import DashboardComponent from './components/DashboardComponent'
 class App extends Component {
   render() {
-    return <Dashboard />;
+    return <DashboardComponent />;
   }
 }
 
