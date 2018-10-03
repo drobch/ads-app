@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import '../index.css';
 import NavComponent from './NavComponent';
-import PopupComponent from './PopupComponent';
 import AdsComponent from './AdsComponent';
 
 class DashboardComponent extends Component {
@@ -13,10 +12,9 @@ class DashboardComponent extends Component {
   render() {
     return (
         <div className="content">
-          <NavComponent />
+          <NavComponent/>
           <div className="ads__wrapper">
             <AdsComponent />
-            <PopupComponent />
           </div>
         </div>
     );

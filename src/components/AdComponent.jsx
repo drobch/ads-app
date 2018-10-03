@@ -14,12 +14,12 @@ class AdComponent extends Component {
   constructor(props) {
     super(props);
     
-    this.state = {
-      title: 'Fender Telecaster',
-      description: 'Lorem ipsum lorem ipsum lorem ipsum',
-      phone: '35438436',
-      price: '1955',
-      currency: '$'
+   this.state = {
+      title: this.props.ad.title,
+      description: this.props.ad.description,
+      phone: this.props.ad.phone,
+      price: this.props.ad.price,
+      currency: this.props.ad.currency
     };
   };
   
