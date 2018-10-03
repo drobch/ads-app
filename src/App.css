@@ -1,7 +1,16 @@
-.modal__inner {
-  background: #ddd;
+.content {
   width: 80%;
   margin: 0 auto;
+}
+
+.nav-tabs {
+  background-color: #f2f2f2;
+}
+
+.ads__wrapper {
+  background: #e3e3e3;
+  margin: 0 auto;
+  padding: 2em 2em 0;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -9,11 +18,25 @@
 }
 
 .modal__new {
-  display: flex;
-  justify-content: center;
-   padding: 2em;
- }
+  position: fixed;
+  border-radius: 50%;
+  bottom: 2.7em;
+  left: 2.7em;
+  height: 48px;
+  width: 48px;
+}
 
+.modal__new:before {
+  content: '+';
+  font-size: 2em;
+  color: #aaa;
+  line-height: .8em;
+}
+
+.modal__new:hover, .modal__new:focus {
+  background-color: #ddd;
+  border: none;
+}
 .form__group {
   padding: 1em;
   display: flex;
@@ -23,4 +46,18 @@
 .form__group > * {
   padding: 2em;
   margin-bottom: .3em;
+}
+.ad__title {
+  display: inline;
+  font-size: 1em;
+  padding-right: 1em;
+}
+.ad__price {
+  display: flex;
+  justify-content: end;
+  padding: .5em 1em;
+  color: #337ab7;
+  border: 1px solid #337ab7;
+  border-radius: 10px;
+  width: fit-content;
 }
