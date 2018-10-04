@@ -10,7 +10,7 @@ import {
   Well,
 } from 'react-bootstrap';
 
-class PopupComponent extends Component {
+class Popup extends Component {
   constructor(props) {
     super(props);
     
@@ -164,4 +164,4 @@ class PopupComponent extends Component {
   
 }
 
-export default PopupComponent;
+export default Popup;

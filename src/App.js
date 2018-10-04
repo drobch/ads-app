@@ -1,10 +1,18 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
-import DashboardComponent from './components/DashboardComponent'
+import Dashboard from './components/Dashboard';
+import Sold from './components/Sold';
+import Selling from './components/Selling';
+import Navigation from './components/Navigation';
+import {Switch, Route} from 'react-router-dom';
+
 class App extends Component {
+  
   render() {
-    return <DashboardComponent />;
-  }
+    return (
+        <Navigation />
+    );
+  };
 }
 
 export default App;
