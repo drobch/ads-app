@@ -1,0 +1,27 @@
+[
+  {
+    title: 'Fender Telecaster',
+    description: 'Lorem ipsum lorem ipsum lorem ipsum',
+    phone: '35438436',
+    price: '1955',
+    currency: '$',
+    selling: true
+  },
+  {
+    title: 'Fender Stratocaster Squier',
+    description: 'Lorem ipsum lorem ipsum lorem ipsum',
+    phone: '35438436',
+    price: '1355',
+    currency: '$',
+    selling: true
+
+  },
+  {
+    title: 'Fender Jazzmaster',
+    description: 'Lorem ipsum lorem ipsum lorem ipsum',
+    phone: '35438436',
+    price: '2955',
+    currency: '$',
+    selling: false
+  }
+]
