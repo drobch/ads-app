@@ -10,9 +10,7 @@ class Dashboard extends Component {
   
   render() {
     return (
-          <div className="ads">
-            <Ads />
-          </div>
+        <Ads/>
     );
   };
 }

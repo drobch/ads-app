@@ -13,6 +13,13 @@ class Ads extends Component {
     this.props.loadAds();
   }
   
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
+    if(nextProps.newAd) {
+      this.props.ads.push(nextProps.newAd);
+    }
+  }
+  
   render() {
     const adsList = this.props.ads.map((ad, i) => (
         <Ad key={i} ad={ad}/>
@@ -30,11 +37,13 @@ class Ads extends Component {
 
 Ads.propTypes = {
   loadAds: PropTypes.func.isRequired,
-  ads: PropTypes.array.isRequired
+  ads: PropTypes.array.isRequired,
+  newAd: PropTypes.object
 };
 
 const mapStateToProps = (state) => ({
-  ads: state.ads.items
+  ads: state.ads.items,
+  newAd: state.ads.item
 });
 
 export default connect(mapStateToProps, { loadAds })(Ads);

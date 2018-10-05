@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import '../index.css';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types'
+import { createAd } from '../actions/adActions';
 
 import {
   FormGroup,
@@ -14,38 +17,35 @@ class Popup extends Component {
   constructor(props) {
     super(props);
     
-    this.handleInput = this.handleInput.bind(this);
-    
-    this.handleHide = this.handleHide.bind(this);
-    this.resetModal = this.resetModal.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    
     this.state = {
       modal: {},
       formErrors: {title: '', phone: '', price: ''},
       titleValid: false,
       phoneValid: false,
       priceValid: false,
+      formValid: false,
       show: false,
     };
-  };
   
-  handleHide() {
-    this.setState({show: false});
-  }
+    this.handleInput = this.handleInput.bind(this);
+    this.handleHide = this.handleHide.bind(this);
+    this.resetModal = this.resetModal.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.validateForm = this.validateForm.bind(this);
+    this.validateField = this.validateField.bind(this);
+  
+  };
   
   onSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state.modal);
-    this.setState({modal: this.state.modal}, console.log(this.state.modal));
-    this.props.returnData(this.state.modal);
+    console.log('MODAL: ', this.state.modal);
+    this.props.createAd(this.state.modal);
     this.resetModal();
     this.handleHide();
   };
   
   resetModal() {
-    this.setState({modal: {}});
-    this.setState({priceValid: false, phoneValid: false, titleValid: false});
+    this.setState({modal: {}, priceValid: false, phoneValid: false, titleValid: false});
   }
   
   validateField(fieldName, value) {
@@ -68,7 +68,6 @@ class Popup extends Component {
         fieldValidationErrors.price = priceValid ? '' : ' is invalid';
         break;
       default:
-        console.log(this.state);
         break;
     }
     
@@ -83,7 +82,7 @@ class Popup extends Component {
   validateForm() {
     this.setState({
       formValid: this.state.titleValid &&
-      this.state.phoneValid && this.state.priceValid,
+        this.state.phoneValid && this.state.priceValid,
     });
   }
   
@@ -94,11 +93,14 @@ class Popup extends Component {
         () => { this.validateField(name, value); });
   }
   
+  handleHide() {
+    this.setState({show: false});
+  }
+  
   render() {
     return (
         <div>
-          <button className="modal__new"
-                  onClick={() => this.setState({show: true})}></button>
+          <button className="modal__new" onClick={() => this.setState({show: true})}> </button>
           <Modal
               show={this.state.show}
               onHide={this.handleClose}
@@ -116,12 +118,6 @@ class Popup extends Component {
                   placeholder="What are you selling?"
                   onChange={this.handleInput}/>
               <FormControl
-                  type="text"
-                  componentClass="textarea"
-                  value={this.state.modal.description}
-                  placeholder="Description"
-                  onChange={this.handleInput}/>
-              <FormControl
                   name="phone"
                   value={this.state.modal.phone}
                   placeholder="Your phone"
@@ -132,9 +128,21 @@ class Popup extends Component {
                   placeholder="Price"
                   onChange={this.handleInput}/>
               <FormControl
+                  name="currency"
                   type="text"
                   value={this.state.modal.currency}
                   placeholder="Currency"
+                  onChange={this.handleInput}/>
+              <FormControl
+                  name="picUrl"
+                  value={this.state.modal.picUrl}
+                  placeholder="Pic url"
+                  onChange={this.handleInput}/>
+              <FormControl
+                  name="description"
+                  type="text"
+                  value={this.state.modal.description}
+                  placeholder="Description"
                   onChange={this.handleInput}/>
             </FormGroup>
               <div className='form__errors'>
@@ -149,9 +157,8 @@ class Popup extends Component {
             <Modal.Footer>
               <Button
                   type="submit"
-                  id="btnSubmitForm"
-                  onClick={this.onSubmit}
                   bsStyle="success"
+                  onClick={this.onSubmit}
                   disabled={!this.state.formValid}>
                 Submit
               </Button>
@@ -161,7 +168,10 @@ class Popup extends Component {
         </div>
     );
   };
-  
+};
+
+Popup.propTypes = {
+  createAd: PropTypes.func.isRequired
 }
 
-export default Popup;
+export default connect(null, { createAd })(Popup);

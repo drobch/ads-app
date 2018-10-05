@@ -1,27 +1,50 @@
 import React, {Component} from 'react';
+import Popup from './Popup';
 import '../index.css';
-import { Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { loadAds } from '../actions/adActions';
+import PropTypes from 'prop-types';
 
-import { Link } from 'react-router-dom'
-import {
-  Nav, NavItem,
-  Button,
-} from 'react-bootstrap';
-
-
+import Ad from './Ad';
 
 class Sold extends Component {
-  constructor(props) {
-    super(props);
-    
+  componentWillMount() {
+    this.props.loadAds();
+  }
+  
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
+    if(nextProps.newAd) {
+      this.props.ads.push(nextProps.newAd);
+    }
   }
   
   render() {
+    const adsList = this.props.ads.map((ad, i) => {
+      if(!ad.isSelling){
+        return <Ad key={i} ad={ad}/>
+      }
+    });
+    
     return (
-        <div>sold</div>
+        <React.Fragment>
+          {adsList}
+          <Popup />
+        </React.Fragment>
     );
   };
-  
 }
 
-export default Sold;
+
+Sold.propTypes = {
+  loadAds: PropTypes.func.isRequired,
+  ads: PropTypes.array.isRequired,
+  newAd: PropTypes.object
+};
+
+const mapStateToProps = (state) => ({
+  ads: state.ads.items,
+  newAd: state.ads.item
+});
+
+export default connect(mapStateToProps, { loadAds })(Sold);
